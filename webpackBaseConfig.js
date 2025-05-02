@@ -12,6 +12,8 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     extensions,
-    plugins: [new TsconfigPathsPlugin({ extensions })],
+    plugins: [
+      new TsconfigPathsPlugin({ extensions }),
+    ],
   },
 };

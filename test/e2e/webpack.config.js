@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { codecovWebpackPlugin } = require('@codecov/webpack-plugin');
 const webpackBaseConfig = require('../../webpackBaseConfig');
 
 module.exports = {
@@ -19,6 +20,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './template.html'),
+    }),
+    codecovWebpackPlugin({
+      enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+      bundleName: "material-ui",
+      uploadToken: process.env.CODECOV_TOKEN,
+      dryRun: true,
     }),
   ],
   module: {
